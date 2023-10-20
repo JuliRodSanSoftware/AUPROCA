@@ -1,0 +1,31 @@
+<mat-card class="card-sign-in">
+    <mat-card-content>
+        <h3>AUTOPROCA</h3>
+        <form class="form-sign-in" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline" class="input-sign-in">
+                <mat-label>Correo electrónico</mat-label>
+                <input type="email" matInput [formControl]="emailFormControl" matInput placeholder="Ej: ejemplo@mail.com">
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    El correo electrónico no está registrado
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                    El correo es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="input-sign-in">
+                <mat-label>Contraseña</mat-label>
+                <input type="password" matInput [formControl]="passwordFormControl" matInput placeholder="">
+                <mat-icon matSuffix>lock</mat-icon>
+                <mat-error *ngIf="passwordFormControl.hasError('password') && !passwordFormControl.hasError('required')">
+                    La contraseña es incorrecta
+                </mat-error>
+                <mat-error *ngIf="passwordFormControl.hasError('required')">
+                    La contraseña es <strong>requerida</strong>
+                </mat-error>
+            </mat-form-field>
+            
+            <button mat-raised-button color="primary" type="submit">Iniciar Sesión</button>
+        </form>
+    </mat-card-content>
+</mat-card>
