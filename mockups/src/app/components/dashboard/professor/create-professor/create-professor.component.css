@@ -1,0 +1,35 @@
+.content{
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 16px;
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+}
+.form-create-professor{
+  display: flex;
+  flex-direction: column; /* Alinea los elementos verticalmente */
+}
+
+.mat-form-field {
+  width: 100%; /* Asegura que los campos de formulario ocupen todo el ancho disponible */
+  margin-bottom: 16px; /* Añade margen entre los campos de formulario */
+}
+
+
+.mat-form-field {
+  width: 100%; /* Asegura que los campos de formulario ocupen todo el ancho disponible */
+}
+
+/* Añade algún margen entre los campos de formulario si es necesario */
+.mat-form-field {
+  margin-bottom: 16px;
+}
+
+#btn-create{
+  font-weight: 600;
+
+}

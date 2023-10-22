@@ -1,0 +1,28 @@
+<div class="dash-container">
+    <mat-toolbar color="primary">
+        <button mat-icon-button class="example-icon" (click)="clickMenu()" aria-label="Abrir menú">
+        <mat-icon>menu</mat-icon>
+        </button>
+        <span class="title">AUPROCA</span>
+        <span class="example-spacer"></span>
+    </mat-toolbar>
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #sidenav mode="side" [opened]="sidenavOpened">
+        <mat-nav-list>
+            <a mat-list-item  routerLink="/dashboard">Inicio</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item  routerLink="/dashboard/professors">Gestionar Docentes</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item  routerLink="/dashboard/labor">Gestionar Labor</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item  routerLink="/dashboard/self-assessment">Gestionar Autoevaluaciones</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item  routerLink="/sign-in">Cerrar sesión</a>
+            <mat-divider></mat-divider>
+        </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

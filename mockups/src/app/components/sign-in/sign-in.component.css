@@ -1,8 +1,10 @@
+#container-sign-in{
+  padding-top: 5%;
+}
 
 .card-sign-in {
     max-width: 400px;
     margin: 0 auto;
-    margin-top: 2%;
     text-align: center;
     background-color: #f5f5f5;
     padding: 20px;
@@ -22,16 +24,19 @@
   /* Estilos para pantallas pequeñas (por ejemplo, teléfonos móviles) */
   @media screen and (max-width: 600px) {
     .card-sign-in {
-      max-width: 90%; /* Ajusta el ancho para pantallas pequeñas */
+      max-width: 90%; 
     }
   }
   
   /* Estilos adicionales para pantallas más grandes si es necesario */
   @media screen and (min-width: 992px) {
     .card-sign-in {
-      max-width: 500px; /* Ajusta el ancho para pantallas más grandes */
+      max-width: 500px;
     }
   }
   
-  /* Añade más estilos o media queries según tus necesidades */
+
+  .button-sign-in{    
+    font-weight: 700;
+  }
   

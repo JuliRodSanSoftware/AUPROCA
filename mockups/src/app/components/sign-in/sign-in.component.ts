@@ -30,6 +30,6 @@ export class SignInComponent {
   }
 
   redirectToHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/dashboard']);
   }
 }

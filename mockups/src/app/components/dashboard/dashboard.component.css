@@ -1,0 +1,25 @@
+.title{
+    font-weight: 700;
+}
+.example-spacer {
+    flex: 1 1 auto;
+}
+.dash-container{
+    height: 100%; /* Establece la altura al 100% de la ventana */
+}
+
+.sidenav-container {
+    height: 100vh; /* Establece la altura al 100% de la ventana */
+    display: flex;
+}
+
+.content-container {
+    flex: 1;
+    overflow-y: auto; 
+}
+
+mat-sidenav-content {
+    flex: 1; 
+    overflow: auto; 
+}
+
