@@ -31,5 +31,8 @@
 
 #btn-create{
   font-weight: 600;
-
+  width: 100%;
+}
+.containaer-btn-create{
+  height: 100px;
 }

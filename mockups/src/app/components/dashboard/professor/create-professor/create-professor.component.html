@@ -50,6 +50,8 @@
         <mat-label>Último título académico:</mat-label>
         <input matInput [(ngModel)]="newProfessor.lastAcademicTitle" name="lastAcademicTitle" id="lastAcademicTitle">
       </mat-form-field>
-      <button id="btn-create"  mat-raised-button color="primary" (click)="createProfessor()">Crear Profesor</button>
+      <div class="containaer-btn-create"> 
+        <button id="btn-create"  mat-raised-button color="primary" (click)="createProfessor()">Crear Profesor</button>
+      </div>
     </form>
   </div>
