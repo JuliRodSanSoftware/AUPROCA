@@ -18,7 +18,6 @@ export class CreateSelfAssessmentComponent {
   professors = Constants.PROFESSORS_DATA;
   labors = Constants.LABORS_DATA;
 
-  
   professorCtrl = new FormControl();
   professorFilterCtrl = new FormControl();
 

@@ -1,1 +1,95 @@
-<p>self-assessment-detail works!</p>
+
+<div>
+    <mat-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Docente</ng-template>
+                <mat-form-field appearance="outline">
+                    <mat-label>Periodo Académico:</mat-label>
+                    <input matInput disabled value={{evaluation.periodo}}>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Número de Identificación del Docente:</mat-label>
+                    <input matInput disabled value={{evaluation.identificacionDocente}}>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre del Docente:</mat-label>
+                    <input matInput disabled value={{evaluation.nombreDocente}}>
+                </mat-form-field>
+                <div>
+                    <button color="primary" mat-raised-button matStepperNext>Siguiente</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Labor</ng-template>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre de la Labor:</mat-label>
+                    <input matInput value={{evaluation.nombreLabor}} name="nombreLabor" id="nombreLabor">
+                </mat-form-field>
+            
+                <mat-form-field appearance="outline">
+                <mat-label>Tipo de Labor:</mat-label>
+                <mat-select value={{evaluation.tipoLabor}} name="tipoLabor" id="tipoLabor">
+                    <mat-option *ngFor="let tipo of tiposLabor" [value]="tipo.codigo">{{ tipo.descripcion }}</mat-option>
+                </mat-select>
+                </mat-form-field>
+            
+                <mat-form-field appearance="outline">
+                <mat-label>Horas Asignadas:</mat-label>
+                <input matInput [(ngModel)]="evaluation.horas" name="horasAsignadas" id="horasAsignadas" type="number">
+                </mat-form-field>
+            <div >
+                <button color="primary" class="btn-back" mat-raised-button matStepperPrevious>Anterior</button>
+                <button color="primary" mat-raised-button matStepperNext>Siguiente</button>
+            </div>
+            </form>
+        </mat-step>
+
+        <mat-step [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup">
+                <ng-template matStepLabel>Autoevaluación</ng-template>
+                <mat-form-field appearance="outline">
+                    <mat-label>Fecha de Inicio:</mat-label>
+                    <input matInput formControlName="fechaInicioCtrl" [matDatepicker]="picker" [(ngModel)]="evaluation.fechaInicio" name="fechaInicio">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+        
+                <mat-form-field appearance="outline">
+                    <mat-label>Fecha de Fin:</mat-label>
+                    <input matInput formControlName="fechaFinCtrl" [matDatepicker]="picker2"  [(ngModel)]="evaluation.fechaFin" name="fechaFin">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado:</mat-label>
+                      <mat-select formControlName="estadoCtrl" [(ngModel)]="evaluation.estado" name="teacherType" id="teacherType">
+                      <mat-option value="En ejecución">En ejecución</mat-option>
+                      <mat-option value="Terminado">Terminado</mat-option>
+                      <mat-option value="Suspendido">Suspendido</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+        
+        
+                <mat-form-field appearance="outline">
+                    <mat-label >Resultados:</mat-label>
+                    <textarea disabled matInput value={{evaluation.resultados}} name="resultados"></textarea>
+                </mat-form-field>
+        
+        
+                <mat-form-field appearance="outline">
+                    <mat-label>Puntaje:</mat-label>
+                    <input disabled matInput type="number" value={{evaluation.puntaje}} name="puntaje">
+                </mat-form-field>
+          
+            <div>
+                <button color="primary" class="btn-back" mat-raised-button matStepperPrevious>Anterior</button>
+                <button color="primary" mat-raised-button (click)="saveEvaluation()" >Guardar Autoevaluación</button>
+            </div>
+            </form>
+        </mat-step>
+    </mat-stepper>
+        
+</div>
