@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Constants } from 'src/app/models/constants';
 import { Evaluation } from 'src/app/models/evaluation';
 
@@ -9,7 +10,9 @@ import { Evaluation } from 'src/app/models/evaluation';
   styleUrls: ['./self-assessment.component.css']
 })
 export class SelfAssessmentComponent {
-  dataSource: Evaluation[] = Constants.EVALUATIONS_DATA; // Asegúrate de cargar tus datos aquí
+  dataSource: Evaluation[] = Constants.EVALUATIONS_DATA; 
+  constructor(private router: Router) {}
+
   displayedColumns: string[] = [
     'id',
     'periodo',
@@ -53,5 +56,13 @@ export class SelfAssessmentComponent {
       default:
         return evaluation[column]; 
     }
+  }
+  
+  viewEvaluationDetails(evaluation: Evaluation) {
+    this.router.navigate(['/dashboard/self-assessment', evaluation.id]);
+  }
+
+  createEvaluation() {
+    this.router.navigate(['/dashboard/create-self-assessment']);
   }
 }

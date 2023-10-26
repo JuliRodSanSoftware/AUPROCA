@@ -8,6 +8,7 @@ export class Constants {
                                         'Último título académico'];
     public static readonly PROFESSORS_DATA: Professor[] = [
     { id: 1, firstName: 'John', lastName: 'Doe', identificationType: 'CC', identificationNumber: '12345', teacherType: 'C', email: 'john@example.com', lastAcademicTitle: 'Ph.D' },
+    { id: 2, firstName: 'Patrick', lastName: 'Doe', identificationType: 'CC', identificationNumber: '12345', teacherType: 'C', email: 'john@example.com', lastAcademicTitle: 'Ph.D' },
   
     ];
 

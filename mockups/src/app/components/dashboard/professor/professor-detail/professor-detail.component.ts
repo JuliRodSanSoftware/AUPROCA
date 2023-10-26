@@ -14,8 +14,6 @@ import { Professor } from 'src/app/models/professor';
 export class ProfessorDetailComponent implements OnInit {
   professor = new Professor();
 
-
-  
   constructor( private _snackBar: MatSnackBar,private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -50,7 +48,7 @@ export class ProfessorDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogSaveProfessor);
     dialogRef.afterClosed().subscribe(result => {
       if (result){
-        this._snackBar.open('Se editó el profesor correctamente', 'Cerrar', {
+        this._snackBar.open('Se editó el docente correctamente', 'Cerrar', {
           duration: 3000, // Duración en milisegundos
         });
         this.router.navigate(['/dashboard/professors']);
@@ -65,7 +63,7 @@ export class ProfessorDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogDeleteProfessor);
     dialogRef.afterClosed().subscribe(result => {
       if (result){
-        this._snackBar.open('Se eliminó el profesor correctamente', 'Cerrar', {
+        this._snackBar.open('Se eliminó el docente correctamente', 'Cerrar', {
           duration: 3000, // Duración en milisegundos
         });
         this.router.navigate(['/dashboard/professors']);

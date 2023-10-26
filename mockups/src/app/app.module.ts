@@ -16,6 +16,10 @@ import { LaborComponent } from './components/dashboard/labor/labor.component';
 import { SelfAssessmentComponent } from './components/dashboard/self-assessment/self-assessment.component';
 import { CreateProfessorComponent } from './components/dashboard/professor/create-professor/create-professor.component';
 import { CreateLaborComponent } from './components/dashboard/labor/create-labor/create-labor.component';
+import { LaborDetailComponent } from './components/dashboard/labor/labor-detail/labor-detail.component';
+import { SelfAssessmentDetailComponent } from './components/dashboard/self-assessment/self-assessment-detail/self-assessment-detail.component';
+import { CreateSelfAssessmentComponent } from './components/dashboard/self-assessment/create-self-assessment/create-self-assessment.component';
+
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -32,8 +36,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
-import { LaborDetailComponent } from './components/dashboard/labor/labor-detail/labor-detail.component';
-import { SelfAssessmentDetailComponent } from './components/dashboard/self-assessment/self-assessment-detail/self-assessment-detail.component';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 
@@ -52,6 +58,7 @@ import { SelfAssessmentDetailComponent } from './components/dashboard/self-asses
     CreateLaborComponent,
     LaborDetailComponent,
     SelfAssessmentDetailComponent,
+    CreateSelfAssessmentComponent,
     
   ],
   imports: [
@@ -73,6 +80,9 @@ import { SelfAssessmentDetailComponent } from './components/dashboard/self-asses
     MatDialogModule,
     MatSelectModule,
     MatStepperModule,
+    NgxMatSelectSearchModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, NgIf
   ],
   providers: [],

@@ -11,6 +11,7 @@ import { CreateProfessorComponent } from './components/dashboard/professor/creat
 import { CreateLaborComponent } from './components/dashboard/labor/create-labor/create-labor.component';
 import { LaborDetailComponent } from './components/dashboard/labor/labor-detail/labor-detail.component';
 import { SelfAssessmentDetailComponent } from './components/dashboard/self-assessment/self-assessment-detail/self-assessment-detail.component';
+import { CreateSelfAssessmentComponent } from './components/dashboard/self-assessment/create-self-assessment/create-self-assessment.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
     { path: 'create-labor', component: CreateLaborComponent },
     { path: 'labors', component: LaborComponent }, 
     { path: 'labors/:id', component: LaborDetailComponent },
+    { path: 'create-self-assessment', component: CreateSelfAssessmentComponent }, 
     { path: 'self-assessment', component: SelfAssessmentComponent }, 
     { path: 'self-assessment/:id', component: SelfAssessmentDetailComponent }, 
     

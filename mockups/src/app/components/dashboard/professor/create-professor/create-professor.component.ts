@@ -15,7 +15,7 @@ export class CreateProfessorComponent {
   constructor( private _snackBar: MatSnackBar, private router: Router,) {}
 
   createProfessor(){
-    this._snackBar.open('Se ha creado el profesor correctamente', 'Cerrar', {
+    this._snackBar.open('Se ha creado el docente correctamente', 'Cerrar', {
       duration: 3000, // Duración en milisegundos
     });
     this.router.navigate(['/dashboard/professors']);

@@ -1,0 +1,65 @@
+<div class="content">
+    <h2>Crear Evaluación</h2>
+    <form class="form-create">
+        <mat-form-field appearance="outline">
+            <mat-label>Selecciona un profesor:</mat-label>
+            <mat-select [formControl]="professorCtrl" #singleSelect placeholder="Selecciona un profesor">
+                <mat-option>
+                <ngx-mat-select-search  placeholderLabel="Buscando profesor.."  [formControl]="professorFilterCtrl"></ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let professor of filteredProfessors | async" [value]="professor">
+                {{ professor.id }} - {{ professor.firstName }} {{ professor.lastName }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Selecciona una Labor:</mat-label>
+            <mat-select [formControl]="laborCtrl" #singleSelect placeholder="Selecciona una labor">
+                <mat-option>
+                <ngx-mat-select-search  placeholderLabel="Buscando labor.."  [formControl]="laborFilterCtrl"></ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let labor of filteredLabors | async" [value]="labor">
+                {{ labor.id }} - {{ labor.nombre }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+            <mat-label>Fecha de Inicio:</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="newEvaluation.fechaInicio" name="fechaInicio">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Fecha de Fin:</mat-label>
+            <input matInput [matDatepicker]="picker2"  [(ngModel)]="newEvaluation.fechaFin" name="fechaFin">
+            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Estado:</mat-label>
+            <input matInput [(ngModel)]="newEvaluation.estado" name="estado">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+            <mat-label >Resultados:</mat-label>
+            <textarea disabled matInput [(ngModel)]="newEvaluation.resultados" name="resultados"></textarea>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+            <mat-label>Puntaje:</mat-label>
+            <input matInput type="number" [(ngModel)]="newEvaluation.puntaje" name="puntaje">
+        </mat-form-field>
+  
+
+        <div class="containaer-btn-create"> 
+            <button class="btn-create" mat-raised-button color="primary" (click)="saveEvaluation()">Crear Autoevaluación</button>
+        </div>
+    </form>
+</div>
