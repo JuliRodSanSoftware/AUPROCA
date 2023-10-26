@@ -1,0 +1,24 @@
+<div class="content">
+    <h2>Crear Labor</h2>
+    <form class="form-create-labor">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de la Labor:</mat-label>
+        <input matInput [(ngModel)]="newLabor.nombre" name="nombre" id="nombre">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de Labor:</mat-label>
+        <mat-select [(ngModel)]="newLabor.tipoLabor" name="tipoLabor" id="tipoLabor">
+          <mat-option *ngFor="let tipo of tiposLabor" [value]="tipo.codigo">{{ tipo.descripcion }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Horas Asignadas:</mat-label>
+        <input matInput [(ngModel)]="newLabor.horasAsignadas" name="horasAsignadas" id="horasAsignadas" type="number">
+      </mat-form-field>
+  
+      <button id="btn-create" mat-raised-button color="primary" (click)="createLabor()">Crear Labor</button>
+    </form>
+  </div>
+  

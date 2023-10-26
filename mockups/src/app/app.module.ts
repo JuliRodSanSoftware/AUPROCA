@@ -15,6 +15,7 @@ import { ProfessorDetailComponent } from './components/dashboard/professor/profe
 import { LaborComponent } from './components/dashboard/labor/labor.component';
 import { SelfAssessmentComponent } from './components/dashboard/self-assessment/self-assessment.component';
 import { CreateProfessorComponent } from './components/dashboard/professor/create-professor/create-professor.component';
+import { CreateLaborComponent } from './components/dashboard/labor/create-labor/create-labor.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -31,6 +32,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
+import { LaborDetailComponent } from './components/dashboard/labor/labor-detail/labor-detail.component';
+import { SelfAssessmentDetailComponent } from './components/dashboard/self-assessment/self-assessment-detail/self-assessment-detail.component';
+
 
 
 
@@ -45,6 +49,9 @@ import { MatStepperModule } from '@angular/material/stepper';
     LaborComponent,
     SelfAssessmentComponent,
     CreateProfessorComponent,
+    CreateLaborComponent,
+    LaborDetailComponent,
+    SelfAssessmentDetailComponent,
     
   ],
   imports: [

@@ -24,13 +24,6 @@ export class ProfessorComponent {
     this.router.navigate(['/dashboard/professors', professor.id]);
   }
 
-  ngOnInit() {
-    this.loadTeachers();
-  }
-
-  loadTeachers() {
-    
-  }
 
   createProfessor() {
     this.router.navigate(['/dashboard/create-professor']);
