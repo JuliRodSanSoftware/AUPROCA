@@ -38,7 +38,7 @@
             
                 <mat-form-field appearance="outline">
                 <mat-label>Horas Asignadas:</mat-label>
-                <input matInput [(ngModel)]="evaluation.horas" name="horasAsignadas" id="horasAsignadas" type="number">
+                <input matInput disabled value={{evaluation.horas}} name="horas" id="horas" type="number">
                 </mat-form-field>
             <div >
                 <button color="primary" class="btn-back" mat-raised-button matStepperPrevious>Anterior</button>

@@ -5,7 +5,7 @@ export class Evaluation {
     identificacionDocente = '';
     nombreLabor = '';
     tipoLabor ='';
-    horas = '';
+    horas = 0;
     descripcion = '';
     fechaInicio = '';
     fechaFin = '';
