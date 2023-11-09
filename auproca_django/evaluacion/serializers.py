@@ -12,3 +12,13 @@ class TipoLaborSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class EvaluacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Evaluacion
+        fields = '__all__'
+
+
+class LaborSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Labor
+        fields = '__all__'
