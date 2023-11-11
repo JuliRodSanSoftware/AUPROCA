@@ -22,3 +22,8 @@ class LaborSerializer(serializers.ModelSerializer):
     class Meta:
         model = Labor
         fields = '__all__'
+
+class UserRolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model  = UserRol
+        fields = '__all__'
