@@ -1,11 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Usuario(models.Model):
+    login = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     usr_identificacion = models.DecimalField(primary_key=True, max_digits=8, decimal_places=0)
     usu_nombre = models.CharField(max_length=50)
     usu_apellido = models.CharField(max_length=50, null=True, blank=True)
     usu_genero = models.CharField(max_length=1)
     usu_estudio = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.login.username
 
 class TipoLabor(models.Model):
     tl_id = models.DecimalField(primary_key=True, max_digits=8, decimal_places=0)
@@ -13,8 +18,14 @@ class TipoLabor(models.Model):
     tl_descripcion = models.CharField(max_length=50)
 
 class Rol(models.Model):
+    roles = (
+			('Decano','Decano'),
+            ('Coordinador', 'Coordinador'),
+			('Docente','Docente'), 
+		)
+	
     rol_id = models.DecimalField(primary_key=True, max_digits=8, decimal_places=0)
-    rol_descripcion = models.CharField(max_length=50)
+    rol_descripcion = models.CharField(max_length = 20, unique = True, choices=roles)
 
 class Labor(models.Model):
     lab_id = models.DecimalField(primary_key=True, max_digits=8, decimal_places=0)
