@@ -1,5 +1,5 @@
 
-
+import pymysql
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -67,14 +67,16 @@ WSGI_APPLICATION = 'auproca_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.mysql',       
         'NAME': 'bdauproca',
         'USER': 'root',
-        'PASSWORD': 'root1234',
+        'PASSWORD': '',
         'HOST': 'localhost',  
         'PORT': '3306',       
     }
 }
+pymysql.version_info(1,4,2,"final", 0)
+pymysql.install_as_MySQLdb()
 
 
 # Password validation
