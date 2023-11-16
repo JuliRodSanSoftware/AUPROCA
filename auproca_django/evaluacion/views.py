@@ -2,7 +2,6 @@ from rest_framework import viewsets
 from .models import *
 from .serializers import *
 
-
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
@@ -18,5 +17,9 @@ class TipoLaborViewSet(viewsets.ModelViewSet):
 class LaborViewSet(viewsets.ModelViewSet):
     queryset = Labor.objects.all()
     serializer_class = LaborSerializer
+
+class UserRolViewSet(viewsets.ModelViewSet):
+    queryset = UserRol.objects.all()
+    serializer_class = UserRolSerializer
 
 

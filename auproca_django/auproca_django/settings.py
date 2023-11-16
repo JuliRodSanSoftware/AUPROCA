@@ -67,12 +67,12 @@ WSGI_APPLICATION = 'auproca_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'auprocadb',
-        'USER': '',
+        'ENGINE': 'django.db.backends.mysql',       
+        'NAME': 'bdauproca',
+        'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',   
-        'PORT': '3306',        
+        'HOST': 'localhost',  
+        'PORT': '3306',       
     }
 }
 pymysql.version_info(1,4,2,"final", 0)
