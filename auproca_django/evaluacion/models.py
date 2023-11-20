@@ -41,3 +41,4 @@ class Evaluacion(models.Model):
     eva_estado = models.BooleanField()
     eva_puntaje = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
     eva_resultado = models.CharField(max_length=1000, null=True, blank=True)
+    eva_sugerencias = models.CharField(max_length=1000, null=True, blank=True)
