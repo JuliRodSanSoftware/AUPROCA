@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Permission
-from .models import Usuario
+from .models import *
 
 class UsuarioAdmin(admin.ModelAdmin):
     list_display = ('get_username', 'usr_identificacion', 'usu_nombre', 'usu_apellido', 'login_groups')
@@ -18,3 +18,5 @@ class UsuarioAdmin(admin.ModelAdmin):
 
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Permission)
+admin.site.register(TipoLabor)
+admin.site.register(Labor)

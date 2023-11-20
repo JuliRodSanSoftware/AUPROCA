@@ -1,0 +1,26 @@
+<div class="labor-management">
+    <h2>Gestión de Tipo de Labores</h2>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container *ngFor="let column of displayedColumns; let i = index" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+        <td mat-cell *matCellDef="let laborType">
+          <ng-container [ngSwitch]="column">
+            <ng-container *ngSwitchCase="'ID'">{{ laborType.tl_id }}</ng-container>
+            <ng-container *ngSwitchCase="'Código'">{{ laborType.tl_codigo }}</ng-container>
+            <ng-container *ngSwitchCase="'Descripción'">{{ laborType.tl_descripcion }}</ng-container>
+            <ng-container *ngSwitchDefault>---</ng-container>
+          </ng-container>
+            
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row matRipple *matRowDef="let row; columns: displayedColumns" (click)="viewLaborDetails(row)"></tr>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </table>
+  
+    <div class="button-container">
+      <button mat-raised-button color="primary" class="create-button" (click)="createLabor()">Crear Tipo de Labor</button>
+    </div>
+  </div>
+    

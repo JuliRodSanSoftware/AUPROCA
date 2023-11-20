@@ -1,10 +1,8 @@
 export class Professor {
-    id: number = 0; 
     firstName: string = '';
     lastName: string = '';
-    identificationType: string = '';
-    identificationNumber: string = '';
-    teacherType: string = '';
+    identificationNumber: number = 0;
+    gender: string = '';
     email: string = '';
     lastAcademicTitle: string = '';
 }

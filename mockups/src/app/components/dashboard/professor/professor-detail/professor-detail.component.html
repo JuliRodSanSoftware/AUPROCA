@@ -1,54 +1,38 @@
 <div class="professor-detail">
     <h2>Detalles del Docente</h2>
     <form class="form-professor-detail">
-
-        <mat-form-field appearance="outline">
-            <mat-label>Tipo de Identificación:</mat-label>
-            <mat-select [(ngModel)]="professor.identificationType" name="identificationType" id="identificationType">
-              <mat-option value="CC">Cédula de Ciudadanía (CC)</mat-option>
-              <mat-option value="CE">Cédula Extranjera (CE)</mat-option>
-            </mat-select>
-          </mat-form-field>
-
         <mat-form-field appearance="outline">
             <mat-label>Número de Identificación:</mat-label>
-            <input matInput [(ngModel)]="professor.identificationNumber" name="identificationNumber" id="identificationNumber">
+            <input matInput [(ngModel)]="professor.usr_identificacion" name="identificationNumber" id="identificationNumber">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Nombre:</mat-label>
-            <input matInput [(ngModel)]="professor.firstName" name="firstName" id="firstName">
+            <input matInput [(ngModel)]="professor.usu_nombre" name="firstName" id="firstName">
         </mat-form-field>
   
         <mat-form-field appearance="outline">
             <mat-label>Apellido:</mat-label>
-            <input matInput [(ngModel)]="professor.lastName" name="lastName" id="lastName">
+            <input matInput [(ngModel)]="professor.usu_apellido" name="lastName" id="lastName">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-            <mat-label>Tipo Docente:</mat-label>
-              <mat-select [(ngModel)]="professor.teacherType" name="teacherType" id="teacherType">
-              <mat-option value="D">Docencia</mat-option>
-              <mat-option value="TD">Trabajos Docencia</mat-option>
-              <mat-option value="PI">Proyectos Investigación</mat-option>
-              <mat-option value="TI">Trabajos Investigación</mat-option>
-              <mat-option value="AD">Administración</mat-option>
-              <mat-option value="AS">Asesoría</mat-option>
-              <mat-option value="S">Servicios</mat-option>
-              <mat-option value="E">Extensión</mat-option>
-              <mat-option value="C">Capacitación</mat-option>
-              <mat-option value="OS">Otros Servicios</mat-option>
+            <mat-label>Genero:</mat-label>
+              <mat-select [(ngModel)]="professor.usu_genero" name="gender" id="gender">
+              <mat-option value="F">Femenino</mat-option>
+              <mat-option value="M">Masculino</mat-option>
+              <mat-option value="O">Otro - No mencionar</mat-option>
             </mat-select>
-        </mat-form-field>
+          </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Correo Electrónico:</mat-label>
-            <input matInput [(ngModel)]="professor.email" name="email" id="email">
+            <input matInput [(ngModel)]="professor.login" name="email" id="email">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Último título académico:</mat-label>
-            <input matInput [(ngModel)]="professor.lastAcademicTitle" name="lastAcademicTitle" id="lastAcademicTitle">
+            <input matInput [(ngModel)]="professor.usu_estudio" name="lastAcademicTitle" id="lastAcademicTitle">
         </mat-form-field>
 
         <div class="form-buttons">

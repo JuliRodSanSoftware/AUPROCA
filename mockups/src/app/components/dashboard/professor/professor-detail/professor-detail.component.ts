@@ -3,8 +3,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Constants } from 'src/app/models/constants';
-import { Professor } from 'src/app/models/professor';
+import { ProfessorData } from 'src/app/models/professorData';
+import { ProfessorService } from 'src/app/services/professor.service';
 
 @Component({
   selector: 'app-professor-detail',
@@ -12,15 +12,16 @@ import { Professor } from 'src/app/models/professor';
   styleUrls: ['./professor-detail.component.css']
 })
 export class ProfessorDetailComponent implements OnInit {
-  professor = new Professor();
+  professor = new ProfessorData();
+  
 
-  constructor( private _snackBar: MatSnackBar,private route: ActivatedRoute, private router: Router, public dialog: MatDialog) {}
+  constructor( private _snackBar: MatSnackBar,private route: ActivatedRoute, private router: Router, public dialog: MatDialog, private professorService: ProfessorService) {}
 
   ngOnInit(): void {
     // Obtén el ID del profesor de los parámetros de la ruta
-    let idParam = this.route.snapshot.paramMap.get('id');
+    const professorId = this.route.snapshot.paramMap.get('id');
 
-    if (idParam === null) {
+    if (professorId === null) {
       this._snackBar.open('ID inválido', 'Cerrar', {
         duration: 2000, // Duración en milisegundos
         panelClass: ['warn'] // Clase CSS personalizada para estilizar el Snackbar
@@ -28,49 +29,90 @@ export class ProfessorDetailComponent implements OnInit {
       this.router.navigate(['/dashboard/professors']);
       return; // Finaliza la función si no hay un ID válido
     }
-    
-    let id: number = parseInt(idParam, 10);
-    this.professor = Constants.PROFESSORS_DATA.find(profesor => profesor.id === id) || {} as Professor;
-    
-    if (!this.professor.id) {
-      this._snackBar.open('ID no encontrado', 'Cerrar', {
+
+    this.professorService.getProfessorDetail(professorId).subscribe({
+      next: (data: ProfessorData) => {
+        this.professor = data
+      },
+      error: (error) => {
+        this._snackBar.open('ID inválido', 'Cerrar', {
+          duration: 2000, // Duración en milisegundos
+          panelClass: ['warn'] // Clase CSS personalizada para estilizar el Snackbar
+        });
+        this.router.navigate(['/dashboard/professors']);
+        return; // Finaliza la función si no hay un ID válido
+      }
+    }); 
+  }
+  saveChanges(){
+    const professorId = this.route.snapshot.paramMap.get('id');
+
+    const dialogRef = this.dialog.open(DialogSaveProfessor);
+
+
+    if (professorId === null) {
+      this._snackBar.open('ID inválido', 'Cerrar', {
         duration: 2000, // Duración en milisegundos
         panelClass: ['warn'] // Clase CSS personalizada para estilizar el Snackbar
       });
       this.router.navigate(['/dashboard/professors']);
-      return; 
-    } 
-    
-    
-  }
+      return; // Finaliza la función si no hay un ID válido
+    }
 
-  saveChanges(){
-    const dialogRef = this.dialog.open(DialogSaveProfessor);
     dialogRef.afterClosed().subscribe(result => {
       if (result){
-        this._snackBar.open('Se editó el docente correctamente', 'Cerrar', {
-          duration: 3000, // Duración en milisegundos
+        this.professorService.updateProfessor(professorId, this.professor).subscribe({
+          next : () => {
+            // Manejo de éxito: Puedes redirigir, mostrar un mensaje, etc.
+            this._snackBar.open('Se editó el docente correctamente', 'Cerrar', {
+              duration: 3000, // Duración en milisegundos
+            });
+            this.router.navigate(['/dashboard/professors']);
+          },
+          error: () => {
+            this._snackBar.open('Error, no se pudo editar al docente', 'Error', {
+              duration: 3000, // Duración en milisegundos
+            });
+            
+          }
         });
-        this.router.navigate(['/dashboard/professors']);
       }
     });
-
     return; 
   }
-
-
   deleteProfessor() {
     const dialogRef = this.dialog.open(DialogDeleteProfessor);
+
+
+    const professorId = this.route.snapshot.paramMap.get('id');
+
+    if (professorId === null) {
+      this._snackBar.open('ID inválido', 'Cerrar', {
+        duration: 2000, // Duración en milisegundos
+        panelClass: ['warn'] // Clase CSS personalizada para estilizar el Snackbar
+      });
+      this.router.navigate(['/dashboard/professors']);
+      return; // Finaliza la función si no hay un ID válido
+    }
+
     dialogRef.afterClosed().subscribe(result => {
       if (result){
-        this._snackBar.open('Se eliminó el docente correctamente', 'Cerrar', {
-          duration: 3000, // Duración en milisegundos
-        });
-        this.router.navigate(['/dashboard/professors']);
+        this.professorService.deleteProfessor(professorId).subscribe({
+          next: () => {
+            this._snackBar.open('Se eliminó el docente correctamente', 'Cerrar', {
+              duration: 3000, // Duración en milisegundos
+            });
+            this.router.navigate(['/dashboard/professors']);
+          },
+          error: () => {
+            this._snackBar.open('Error, no se pudo eliminar al docente.', 'Cerrar', {
+              duration: 3000, // Duración en milisegundos
+            });
+        
+          }
+        });        
       }
     });
-
-    
     return; 
   }
 

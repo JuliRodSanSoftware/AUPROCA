@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {  Router } from '@angular/router';
 import { Professor } from 'src/app/models/professor';
+import { ProfessorService } from 'src/app/services/professor.service';
 
 @Component({
   selector: 'app-create-professor',
@@ -11,14 +12,27 @@ import { Professor } from 'src/app/models/professor';
 export class CreateProfessorComponent {
 
   newProfessor = new Professor();
+  loading = false;
+  constructor( private _snackBar: MatSnackBar, private router: Router, private professorService: ProfessorService) {}
 
-  constructor( private _snackBar: MatSnackBar, private router: Router,) {}
-
-  createProfessor(){
-    this._snackBar.open('Se ha creado el docente correctamente', 'Cerrar', {
-      duration: 3000, // Duración en milisegundos
-    });
-    this.router.navigate(['/dashboard/professors']);
-    return; 
+  createProfessor() {
+    this.loading = true;
+    this.professorService.createProfessor(this.newProfessor).subscribe({
+        next: () => {
+          this.loading = false;
+          this._snackBar.open('Se ha creado el docente correctamente', 'Cerrar', {
+            duration: 3000,
+          });
+          this.router.navigate(['/dashboard/professors']);
+        },
+        error: () => {
+          this.loading = false;
+          this._snackBar.open('Error, no se pudo crear el docente', 'Cerrar', {
+            duration: 3000,
+          });
+         
+        }
+      }
+    );
   }
 }

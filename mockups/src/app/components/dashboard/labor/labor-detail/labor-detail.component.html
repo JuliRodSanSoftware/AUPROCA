@@ -1,22 +1,26 @@
 <div class="labor-detail">
     <h2>Detalles de la Labor</h2>
     <form class="form-labor-detail">
-
         <mat-form-field appearance="outline">
-            <mat-label>Nombre de la Labor:</mat-label>
-            <input matInput [(ngModel)]="labor.nombre" name="nombre" id="nombre">
+            <mat-label>ID:</mat-label>
+            <input matInput [(ngModel)]="labor.lab_id" name="id" id="id">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-            <mat-label>Tipo de Labor:</mat-label>
-            <mat-select [(ngModel)]="labor.tipoLabor" name="tipoLabor" id="tipoLabor">
-                <mat-option *ngFor="let tipo of tiposLabor" [value]="tipo.codigo">{{ tipo.descripcion }}</mat-option>
+            <mat-label>Nombre:</mat-label>
+            <input matInput [(ngModel)]="labor.lab_nombre" name="nombre" id="nombre">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo:</mat-label>
+            <mat-select [(ngModel)]="labor.tl_id" [(value)]="selectedType" name="tipoLabor" id="tipoLabor">
+                <mat-option *ngFor="let type of laborTypes" [value]="type.tl_id">{{ type.tl_descripcion }}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Horas Asignadas:</mat-label>
-            <input matInput [(ngModel)]="labor.horasAsignadas" name="horasAsignadas" id="horasAsignadas" type="number">
+            <input matInput [(ngModel)]="labor.lab_horas" name="horasAsignadas" id="horasAsignadas" type="number">
         </mat-form-field>
 
         <div class="form-buttons">

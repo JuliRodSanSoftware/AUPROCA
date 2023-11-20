@@ -5,14 +5,12 @@
             <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
             <td mat-cell *matCellDef="let professor">
                 <ng-container [ngSwitch]="column">
-                <ng-container *ngSwitchCase="'ID'">{{ professor.id }}</ng-container>
-                <ng-container *ngSwitchCase="'Número de Identificación'">{{ professor.identificationNumber }}</ng-container>
-                <ng-container *ngSwitchCase="'Nombre'">{{ professor.firstName }}</ng-container>
-                <ng-container *ngSwitchCase="'Apellido'">{{ professor.lastName }}</ng-container>
-                <ng-container *ngSwitchCase="'Tipo de Identificación'">{{ professor.identificationType }}</ng-container>
-                <ng-container *ngSwitchCase="'Tipo Docente'">{{ professor.teacherType }}</ng-container>
-                <ng-container *ngSwitchCase="'Correo Electrónico'">{{ professor.email }}</ng-container>
-                <ng-container *ngSwitchCase="'Último título académico'">{{ professor.lastAcademicTitle }}</ng-container>
+                <ng-container *ngSwitchCase="'Número de Identificación'">{{ professor.usr_identificacion }}</ng-container>
+                <ng-container *ngSwitchCase="'Nombre'">{{ professor.usu_nombre }}</ng-container>
+                <ng-container *ngSwitchCase="'Apellido'">{{ professor.usu_apellido }}</ng-container>
+                <ng-container *ngSwitchCase="'Genero'">{{ professor.usu_genero }}</ng-container>
+                <ng-container *ngSwitchCase="'Correo Electrónico'">{{ professor.login }}</ng-container>
+                <ng-container *ngSwitchCase="'Último título académico'">{{ professor.usu_estudio }}</ng-container>
                 <ng-container *ngSwitchDefault>---</ng-container>
                 </ng-container>
                 

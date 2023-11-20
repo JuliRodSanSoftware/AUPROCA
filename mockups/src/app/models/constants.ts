@@ -3,19 +3,26 @@ import { Labor } from "./labor";
 import { Professor } from "./professor";
 
 export class Constants {
-    public static readonly columns  =   ['ID','Número de Identificación', 'Nombre', 'Apellido', 
-                                        'Tipo de Identificación', 'Tipo Docente', 'Correo Electrónico', 
+  public static readonly HOST = "http://localhost:8000";
+  public static readonly API = Constants.HOST + "/api";
+
+
+    public static readonly COLUMNS_PROFESSOR  =   ['Número de Identificación', 'Nombre', 'Apellido', 
+                                        'Genero', 'Correo Electrónico', 
                                         'Último título académico'];
+
+    public static readonly COLUMNS_LABOR: string[] = ["ID",'Nombre', 'Tipo labor', 'Horas asignadas'];
+    public static readonly COLUMNS_LABOR_TYPE: string[] = ["ID",'Código', 'Descripción'];
     public static readonly PROFESSORS_DATA: Professor[] = [
-    { id: 1, firstName: 'John', lastName: 'Doe', identificationType: 'CC', identificationNumber: '12345', teacherType: 'C', email: 'john@example.com', lastAcademicTitle: 'Ph.D' },
-    { id: 2, firstName: 'Patrick', lastName: 'Doe', identificationType: 'CC', identificationNumber: '12345', teacherType: 'C', email: 'john@example.com', lastAcademicTitle: 'Ph.D' },
+    { identificationNumber: 1, firstName: 'John', lastName: 'Doe', gender: 'M', email: 'john@example.com', lastAcademicTitle: 'Ph.D' },
+    { identificationNumber: 2, firstName: 'Patrick', lastName: 'Doe', gender: 'F', email: 'john@example.com', lastAcademicTitle: 'Ph.D' },
   
     ];
 
     public static readonly LABORS_DATA: Labor[] =  [
-      { id: 1, nombre: 'Materia 1', tipoLabor: 'Docencia', horasAsignadas: 40 },
-      { id: 2, nombre: 'Proyecto 1', tipoLabor: 'Proyectos Investigación', horasAsignadas: 80 },
-      { id: 3, nombre: 'Tesis 1', tipoLabor: 'Trabajos Investigación', horasAsignadas: 60 },
+      { lab_id: 1, lab_nombre: 'Materia 1', tl_id: 1, lab_horas: 40 },
+      { lab_id: 2, lab_nombre: 'Proyecto 1', tl_id: 1, lab_horas: 80 },
+      { lab_id: 3, lab_nombre: 'Tesis 1', tl_id: 3, lab_horas: 60 },
     ]
 
 

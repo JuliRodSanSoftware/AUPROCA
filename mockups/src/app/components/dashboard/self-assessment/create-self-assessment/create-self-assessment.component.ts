@@ -46,9 +46,6 @@ export class CreateSelfAssessmentComponent {
     );
   }
 
-
-  
-
   filterProfessors(filter: string): any[] {
     // Filtra los profesores según el término de búsqueda
     const filterValue = filter.toLowerCase();
@@ -61,7 +58,7 @@ export class CreateSelfAssessmentComponent {
     // Filtra los profesores según el término de búsqueda
     const filterValue = filter.toLowerCase();
     return this.labors.filter((labor) =>
-      labor.nombre.toLowerCase().includes(filterValue)
+      labor.lab_nombre?.toLowerCase().includes(filterValue)
     );
   }
 

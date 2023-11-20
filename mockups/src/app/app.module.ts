@@ -6,6 +6,7 @@ import { NgIf } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { HomeComponent } from './components/dashboard/home/home.component';
@@ -19,7 +20,9 @@ import { CreateLaborComponent } from './components/dashboard/labor/create-labor/
 import { LaborDetailComponent } from './components/dashboard/labor/labor-detail/labor-detail.component';
 import { SelfAssessmentDetailComponent } from './components/dashboard/self-assessment/self-assessment-detail/self-assessment-detail.component';
 import { CreateSelfAssessmentComponent } from './components/dashboard/self-assessment/create-self-assessment/create-self-assessment.component';
-
+import { LaborTypeComponent } from './components/dashboard/labor-type/labor-type.component';
+import { CreateLaborTypeComponent } from './components/dashboard/labor-type/create-labor-type/create-labor-type.component';
+import { LaborTypeDetailComponent } from './components/dashboard/labor-type/labor-type-detail/labor-type-detail.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -44,6 +47,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,12 +63,16 @@ import { MatNativeDateModule } from '@angular/material/core';
     LaborDetailComponent,
     SelfAssessmentDetailComponent,
     CreateSelfAssessmentComponent,
+    LaborTypeComponent,
+    CreateLaborTypeComponent,
+    LaborTypeDetailComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,

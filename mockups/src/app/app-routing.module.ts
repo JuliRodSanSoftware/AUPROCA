@@ -12,6 +12,9 @@ import { CreateLaborComponent } from './components/dashboard/labor/create-labor/
 import { LaborDetailComponent } from './components/dashboard/labor/labor-detail/labor-detail.component';
 import { SelfAssessmentDetailComponent } from './components/dashboard/self-assessment/self-assessment-detail/self-assessment-detail.component';
 import { CreateSelfAssessmentComponent } from './components/dashboard/self-assessment/create-self-assessment/create-self-assessment.component';
+import { CreateLaborTypeComponent } from './components/dashboard/labor-type/create-labor-type/create-labor-type.component';
+import { LaborTypeComponent } from './components/dashboard/labor-type/labor-type.component';
+import { LaborTypeDetailComponent } from './components/dashboard/labor-type/labor-type-detail/labor-type-detail.component';
 
 
 const routes: Routes = [
@@ -24,6 +27,9 @@ const routes: Routes = [
     { path: 'create-labor', component: CreateLaborComponent },
     { path: 'labors', component: LaborComponent }, 
     { path: 'labors/:id', component: LaborDetailComponent },
+    { path: 'create-labor-type', component: CreateLaborTypeComponent },
+    { path: 'labor-types', component: LaborTypeComponent }, 
+    { path: 'labor-types/:id', component: LaborTypeDetailComponent },
     { path: 'create-self-assessment', component: CreateSelfAssessmentComponent }, 
     { path: 'self-assessment', component: SelfAssessmentComponent }, 
     { path: 'self-assessment/:id', component: SelfAssessmentDetailComponent }, 

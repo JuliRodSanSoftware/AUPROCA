@@ -1,0 +1,24 @@
+<div class="labor-type-detail">
+    <h2>Detalles del Tipo de labor</h2>
+    <form class="form-labor-type-detail">
+        <mat-form-field appearance="outline">
+            <mat-label>ID:</mat-label>
+            <input matInput [(ngModel)]="laborType.tl_id" name="id" id="id" type="number"> 
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Código:</mat-label>
+            <input matInput [(ngModel)]="laborType.tl_codigo" name="codigo" id="codigo"> 
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Descripción:</mat-label>
+            <input matInput [(ngModel)]="laborType.tl_descripcion" name="descripcion" id="descripcion"> 
+        </mat-form-field>
+
+        <div class="form-buttons">
+            <button mat-raised-button color="warn" (click)="deleteLabor()">Eliminar</button>
+            <button mat-raised-button color="primary" (click)="saveChanges()">Guardar Cambios</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+<div class="content">
+    <h2>Crear Tipo Labor</h2>
+    <form class="form-create-labor">
+        <mat-form-field appearance="outline">
+            <mat-label>ID:</mat-label>
+            <input matInput [(ngModel)]="newLaborType.tl_id" name="id" id="id" type="number"> 
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+            <mat-label>Código:</mat-label>
+            <input matInput [(ngModel)]="newLaborType.tl_codigo" name="codigo" id="codigo"> 
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Descripción:</mat-label>
+            <input matInput [(ngModel)]="newLaborType.tl_descripcion" name="descripcion" id="descripcion"> 
+        </mat-form-field>
+      <button id="btn-create" mat-raised-button color="primary" (click)="createLaborType()" [disabled]="loading">Crear Tipo Labor</button>
+    </form>
+</div>
+    

@@ -2,14 +2,6 @@
     <h2>Crear Docente</h2>
     <form class="form-create-professor">
       <mat-form-field appearance="outline">
-        <mat-label>Tipo de Identificación:</mat-label>
-        <mat-select [(ngModel)]="newProfessor.identificationType" name="identificationType" id="identificationType">
-          <mat-option value="CC">Cédula de Ciudadanía (CC)</mat-option>
-          <mat-option value="CE">Cédula Extranjera (CE)</mat-option>
-        </mat-select>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
         <mat-label>Número de Identificación:</mat-label>
         <input matInput [(ngModel)]="newProfessor.identificationNumber" name="identificationNumber" id="identificationNumber">
       </mat-form-field>
@@ -26,18 +18,11 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Tipo Docente:</mat-label>
-          <mat-select [(ngModel)]="newProfessor.teacherType" name="teacherType" id="teacherType">
-          <mat-option value="D">Docencia</mat-option>
-          <mat-option value="TD">Trabajos Docencia</mat-option>
-          <mat-option value="PI">Proyectos Investigación</mat-option>
-          <mat-option value="TI">Trabajos Investigación</mat-option>
-          <mat-option value="AD">Administración</mat-option>
-          <mat-option value="AS">Asesoría</mat-option>
-          <mat-option value="S">Servicios</mat-option>
-          <mat-option value="E">Extensión</mat-option>
-          <mat-option value="C">Capacitación</mat-option>
-          <mat-option value="OS">Otros Servicios</mat-option>
+        <mat-label>Genero:</mat-label>
+          <mat-select [(ngModel)]="newProfessor.gender" name="gender" id="gender">
+          <mat-option value="F">Femenino</mat-option>
+          <mat-option value="M">Masculino</mat-option>
+          <mat-option value="O">Otro - No mencionar</mat-option>
         </mat-select>
       </mat-form-field>
   
@@ -51,7 +36,7 @@
         <input matInput [(ngModel)]="newProfessor.lastAcademicTitle" name="lastAcademicTitle" id="lastAcademicTitle">
       </mat-form-field>
       <div class="containaer-btn-create"> 
-        <button id="btn-create"  mat-raised-button color="primary" (click)="createProfessor()">Crear Docente</button>
+        <button id="btn-create"  mat-raised-button color="primary" (click)="createProfessor()" [disabled]="loading">Crear Docente</button>
       </div>
     </form>
   </div>

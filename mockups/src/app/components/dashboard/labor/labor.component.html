@@ -5,10 +5,10 @@
       <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
       <td mat-cell *matCellDef="let labor">
         <ng-container [ngSwitch]="column">
-          <ng-container *ngSwitchCase="'ID'">{{ labor.id }}</ng-container>
-          <ng-container *ngSwitchCase="'Nombre'">{{ labor.nombre }}</ng-container>
-          <ng-container *ngSwitchCase="'Tipo labor'">{{ labor.tipoLabor }}</ng-container>
-          <ng-container *ngSwitchCase="'Horas asignadas'">{{ labor.horasAsignadas }}</ng-container>
+          <ng-container *ngSwitchCase="'ID'">{{ labor.lab_id }}</ng-container>
+          <ng-container *ngSwitchCase="'Nombre'">{{ labor.lab_nombre }}</ng-container>
+          <ng-container *ngSwitchCase="'Tipo labor'">{{ labor.tl_id }}</ng-container>
+          <ng-container *ngSwitchCase="'Horas asignadas'">{{ labor.lab_horas }}</ng-container>
           <ng-container *ngSwitchDefault>---</ng-container>
         </ng-container>
           
