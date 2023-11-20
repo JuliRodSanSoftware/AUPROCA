@@ -20,3 +20,5 @@ admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Permission)
 admin.site.register(TipoLabor)
 admin.site.register(Labor)
+admin.site.register(Evaluacion)
+
