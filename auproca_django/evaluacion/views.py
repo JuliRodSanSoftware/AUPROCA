@@ -60,4 +60,10 @@ class UserRolViewSet(viewsets.ModelViewSet):
     queryset = UserRol.objects.all()
     serializer_class = UserRolSerializer
 
+class RolViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Rol.objects.all()
+    serializer_class = RolSerializer
 
+class PeriodoViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Periodo.objects.all()
+    serializer_class = PeriodoSerializer

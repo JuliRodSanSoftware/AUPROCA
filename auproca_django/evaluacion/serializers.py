@@ -27,3 +27,13 @@ class UserRolSerializer(serializers.ModelSerializer):
     class Meta:
         model  = UserRol
         fields = '__all__'
+
+class RolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model  = Rol
+        fields = '__all__'
+
+class PeriodoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model  = Periodo
+        fields = '__all__'

@@ -17,15 +17,24 @@ class TipoLabor(models.Model):
     tl_codigo = models.CharField(max_length=3)
     tl_descripcion = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.tl_codigo
+
 class Rol(models.Model):
     roles = (
 			('Decano','Decano'),
             ('Coordinador', 'Coordinador'),
-			('Docente','Docente'), 
+            ('Planta','Planta'), 
+            ('TC','TC'), 
+			('Catedra','Catedra'), 
+            
 		)
 	
     rol_id = models.DecimalField(primary_key=True, max_digits=8, decimal_places=0)
     rol_descripcion = models.CharField(max_length = 20, unique = True, choices=roles)
+
+    def __str__(self):
+        return self.rol_descripcion
 
 class Labor(models.Model):
     lab_id = models.DecimalField(primary_key=True, max_digits=8, decimal_places=0)
@@ -33,18 +42,25 @@ class Labor(models.Model):
     lab_nombre = models.CharField(max_length=50)
     lab_horas = models.DecimalField(max_digits=8, decimal_places=0)
 
+    def __str__(self):
+        return self.lab_nombre
+
 class Periodo(models.Model):
     per_id = models.DecimalField(primary_key=True, max_digits=8, decimal_places=0)
     per_nombre = models.CharField(max_length=50)
     per_fechainicio = models.DateField()
     per_fechafin = models.DateField()
+    def __str__(self):
+        return self.per_nombre
 
 class UserRol(models.Model):
     usr_identificacion = models.ForeignKey(Usuario, on_delete=models.RESTRICT)
     rol_id = models.ForeignKey(Rol, on_delete=models.RESTRICT, db_column='rol_id', related_name='user_roles', related_query_name='user_role')
+    def __str__(self):
+        return self.usr_identificacion
 
 class Evaluacion(models.Model):
-    eva_id = models.DecimalField(primary_key=True, max_digits=8, decimal_places=0)
+    eva_id = models.AutoField(primary_key=True)
     lab_id = models.ForeignKey(Labor, on_delete=models.RESTRICT)
     per_id = models.ForeignKey(Periodo, on_delete=models.RESTRICT)
     usr_identificacion = models.ForeignKey(UserRol, on_delete=models.RESTRICT, db_column='usr_identificacion', related_name='evaluaciones_usuario')
@@ -53,3 +69,5 @@ class Evaluacion(models.Model):
     eva_puntaje = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
     eva_resultado = models.CharField(max_length=1000, null=True, blank=True)
     eva_sugerencias = models.CharField(max_length=1000, null=True, blank=True)
+    def __str__(self):
+        return self.usr_identificacion
