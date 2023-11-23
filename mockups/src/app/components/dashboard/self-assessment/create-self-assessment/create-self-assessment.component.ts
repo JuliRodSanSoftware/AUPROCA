@@ -5,6 +5,14 @@ import { Router } from '@angular/router';
 import { Observable, startWith, map } from 'rxjs';
 import { Constants } from 'src/app/models/constants';
 import { EvaluationC } from 'src/app/models/evaluationComplete';
+import { Labor } from 'src/app/models/labor';
+import { Period } from 'src/app/models/period';
+import { ProfessorData } from 'src/app/models/professorData';
+import { LaborService } from 'src/app/services/labor.service';
+import { PeriodService } from 'src/app/services/period.service';
+import { ProfessorService } from 'src/app/services/professor.service';
+import { SelfAssessmentService } from 'src/app/services/self-assessment.service';
+import { UserRoleService } from 'src/app/services/user-rol.service';
 
 
 
@@ -15,8 +23,10 @@ import { EvaluationC } from 'src/app/models/evaluationComplete';
 })
 export class CreateSelfAssessmentComponent {
   newEvaluation = new EvaluationC();
-  professors = Constants.PROFESSORS_DATA;
-  labors = Constants.LABORS_DATA;
+  professors: ProfessorData[] = [];
+  labors: Labor[] = [];
+  periods: Period[] = [];
+  loading = false;
 
   professorCtrl = new FormControl();
   professorFilterCtrl = new FormControl();
@@ -28,29 +38,51 @@ export class CreateSelfAssessmentComponent {
   filteredLabors: Observable<any[]> = new Observable<any[]>();
 
 
-  constructor( private _snackBar: MatSnackBar, private router: Router,) {}
+  constructor( private _snackBar: MatSnackBar, 
+    private router: Router,private laborService: LaborService, private periodService: PeriodService,
+    private professorService: ProfessorService, private selfAssessmentService: SelfAssessmentService,
+    private userRoleService: UserRoleService) {}
+
+  ngAfterViewInit(): void {
+    this.newEvaluation.eva_estado ="E";
+    this.newEvaluation.eva_puntaje = 0;
+    this.periodService.getPeriods().subscribe(periods =>{
+      this.periods = periods;
+    }
+
+    )
+    this.laborService.getLabors().subscribe(labors =>{
+      this.labors = labors;
+      this.filteredLabors = this.laborFilterCtrl.valueChanges.pipe(
+        startWith(''),
+        map((laborFilter) =>
+          laborFilter ? this.filterLabors(laborFilter) : this.labors.slice()
+        )
+      );
+      
+    });
+    this.professorService.getProfessors().subscribe(professors =>{
+      this.professors = professors;
+      this.filteredProfessors = this.professorFilterCtrl.valueChanges.pipe(
+        startWith(''),
+        map((professorFilter) =>
+          professorFilter ? this.filterProfessors(professorFilter) : this.professors.slice()
+        )
+      );
+    });
+
+  }
 
   ngOnInit() {
-    this.filteredProfessors = this.professorFilterCtrl.valueChanges.pipe(
-      startWith(''),
-      map((professorFilter) =>
-        professorFilter ? this.filterProfessors(professorFilter) : this.professors.slice()
-      )
-    );
+    
 
-    this.filteredLabors = this.laborFilterCtrl.valueChanges.pipe(
-      startWith(''),
-      map((laborFilter) =>
-        laborFilter ? this.filterLabors(laborFilter) : this.labors.slice()
-      )
-    );
   }
 
   filterProfessors(filter: string): any[] {
     // Filtra los profesores según el término de búsqueda
     const filterValue = filter.toLowerCase();
     return this.professors.filter((professor) =>
-      professor.firstName.toLowerCase().includes(filterValue)
+      professor.usu_nombre?.toLowerCase().includes(filterValue)
     );
   }
 
@@ -62,15 +94,47 @@ export class CreateSelfAssessmentComponent {
     );
   }
 
-  saveEvaluation(){
-    this._snackBar.open('Se ha creado la autoevauación correctamente', 'Cerrar', {
-      duration: 3000, // Duración en milisegundos
-    });
-    this.router.navigate(['/dashboard/self-assessment']);
-    return; 
-  }
+  createSelfAssessment() {
+    this.loading = true;
+    this.newEvaluation.eva_resultado = "";
+    this.newEvaluation.eva_sugerencias = "";
+    
 
-  
+
+    this.userRoleService.getUserRoles().subscribe({
+      next:(userRoles)=>{
+        userRoles.map((role) =>{
+          if (role.usr_identificacion == this.newEvaluation.usr_identificacion){
+            this.newEvaluation.rol_id =role.rol_id;
+          }
+          console.log(this.newEvaluation);
+          this.selfAssessmentService.createSelfAssessment(this.newEvaluation).subscribe({
+            next: () => {
+              this.loading = false;
+              this._snackBar.open('Se ha creado la autoevaluación correctamente', 'Cerrar', {
+                duration: 3000,
+              });
+              this.router.navigate(['/dashboard/self-assessment']);
+            },
+            error: () => {
+              this.loading = false;
+              this._snackBar.open('Error, no se pudo crear la autoevaluación', 'Cerrar', {
+                duration: 3000,
+              });
+             
+            }
+          }
+        );
+            
+        });
+        
+
+
+      }
+      
+    });
+    
+  }
 
 
 }

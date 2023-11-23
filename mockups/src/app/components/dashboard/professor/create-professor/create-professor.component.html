@@ -30,6 +30,14 @@
         <mat-label>Correo Electrónico:</mat-label>
         <input matInput [(ngModel)]="newProfessor.email" name="email" id="email">
       </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Rol:</mat-label>
+          <mat-select [(ngModel)]="newUserRole.rol_id" name="rol" id="rol">
+            <mat-option *ngFor="let rol of roles" [value]="rol.rol_id">{{ rol.rol_descripcion }}</mat-option>
+
+        </mat-select>
+      </mat-form-field>
   
       <mat-form-field appearance="outline">
         <mat-label>Último título académico:</mat-label>

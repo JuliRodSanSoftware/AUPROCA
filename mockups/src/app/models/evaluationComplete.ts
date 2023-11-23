@@ -1,18 +1,16 @@
-import { Labor } from "./labor";
-import { Professor } from "./professor";
 
 export class EvaluationC {
-    id: number = -1;
-    periodo = '';
-    profesor = new Professor();
-    labor = new Labor();
-    fechaInicio = '';
-    fechaFin = '';
-    estado = '';
-    resultados = '';
-    puntaje = 0;
-
-     
-    [key: string]: any;
+    constructor(
+        public eva_estado?: string,
+        public eva_puntaje?: number,
+        public eva_resultado?: string,
+        public eva_sugerencias?: string,
+        public lab_id?: number,
+        public per_id?: number,
+        public usr_identificacion?: number,
+        public rol_id?: number  // Puedes ajustar el tipo según la estructura real del objeto login
+      ) {
+        // Puedes inicializar propiedades adicionales aquí si es necesario
+      }
 }
   

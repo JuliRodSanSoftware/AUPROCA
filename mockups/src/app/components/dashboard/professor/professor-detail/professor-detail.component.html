@@ -31,6 +31,14 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline">
+            <mat-label>Rol:</mat-label>
+              <mat-select [(ngModel)]="userRole.rol_id" [(value)]="selectedRole" name="rol" id="rol">
+                <mat-option *ngFor="let rol of roles" [value]="rol.rol_id">{{ rol.rol_descripcion }}</mat-option>
+    
+            </mat-select>
+          </mat-form-field>
+
+        <mat-form-field appearance="outline">
             <mat-label>Último título académico:</mat-label>
             <input matInput [(ngModel)]="professor.usu_estudio" name="lastAcademicTitle" id="lastAcademicTitle">
         </mat-form-field>

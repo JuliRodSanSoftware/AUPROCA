@@ -3,7 +3,7 @@ from django.contrib.auth.models import Permission
 from .models import *
 
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ('get_username', 'usr_identificacion', 'usu_nombre', 'usu_apellido', 'login_groups')
+    list_display = ('usr_identificacion','get_username', 'usu_nombre', 'usu_apellido', 'login_groups')
     search_fields = ('usr_identificacion', 'login__username', 'login_groups')
     list_filter = ('login__groups', )
 

@@ -9,7 +9,8 @@ router.register(r'tipoLabor', TipoLaborViewSet)
 router.register(r'Evaluacion', EvaluacionViewSet)
 router.register(r'Labor', LaborViewSet)
 router.register(r'UserRol', UserRolViewSet)
-router.register(r'Rol', RolViewSet)
+router.register(r'Rol', RolViewSet, basename="Rol")
+router.register(r'Periodo', PeriodoViewSet)
 
 
 urlpatterns = [
