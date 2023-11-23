@@ -61,8 +61,14 @@ class UserRolViewSet(viewsets.ModelViewSet):
     serializer_class = UserRolSerializer
 
 class RolViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Rol.objects.all()
     serializer_class = RolSerializer
+
+    def get_queryset(self):
+
+        
+        queryset = Rol.objects.exclude(rol_descripcion=['Decano', 'Coordinador'])
+
+        return queryset
 
 class PeriodoViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Periodo.objects.all()
