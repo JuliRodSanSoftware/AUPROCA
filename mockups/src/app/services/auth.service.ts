@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Constants } from '../models/constants';
 import { HttpClient } from '@angular/common/http';
-import { LoginData } from '../models/loginData';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,6 +10,7 @@ export class AuthService {
   private apiUrlLogin = `${Constants.API}/login/`;
   private apiUrlLogout = `${Constants.API}/logout/`;
   private apiUrlIsLogged = `${Constants.API}/is_logged_in/`;
+  private apiUrlChangePassword = `${Constants.API}/change-password/`;
   private apiUrlRegister = `${Constants.API}/register/`;
   constructor(private http: HttpClient) { }
 
@@ -21,6 +21,21 @@ export class AuthService {
     });
   }
 
+  registerUser(email: any, password:any): Observable<any> {
+    return this.http.post<any>(this.apiUrlRegister, {
+      "username": email,
+      "password": password,
+      "email": email
+    });
+  }
+
+  changePassword(email: any, password:any, password2:any): Observable<any> {
+    return this.http.post<any>(this.apiUrlChangePassword, {
+      "username": email,
+      "old_password": password,
+      "new_password": password2
+    });
+  }
 
   logout(): Observable<any> {
     let refresh = localStorage.getItem('refresh-auproca');

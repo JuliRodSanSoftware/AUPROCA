@@ -4,6 +4,7 @@ import {  Router } from '@angular/router';
 import { Professor } from 'src/app/models/professor';
 import { Role } from 'src/app/models/role';
 import { UserRol } from 'src/app/models/user-rol';
+import { AuthService } from 'src/app/services/auth.service';
 import { ProfessorService } from 'src/app/services/professor.service';
 import { RoleService } from 'src/app/services/role.service';
 import { UserRoleService } from 'src/app/services/user-rol.service';
@@ -21,7 +22,7 @@ export class CreateProfessorComponent {
   loading = false;
   constructor( private _snackBar: MatSnackBar, private router: Router, 
     private professorService: ProfessorService, private userRolService: UserRoleService,
-    private rolService: RoleService) {}
+    private rolService: RoleService, private authSerivce: AuthService) {}
 
   ngAfterViewInit(): void {
     this.rolService.getRoles().subscribe(roles =>{
@@ -32,32 +33,43 @@ export class CreateProfessorComponent {
   createProfessor() {
     this.newUserRole.usr_identificacion = this.newProfessor.identificationNumber;
     this.loading = true;
-    this.professorService.createProfessor(this.newProfessor).subscribe({
-        next: () => {
-          this.userRolService.createUserRole(this.newUserRole).subscribe({
-            next:() =>{
-              this.loading = false;
-              this._snackBar.open('Se ha creado el docente correctamente', 'Cerrar', {
-                duration: 3000,
-              });
-              this.router.navigate(['/dashboard/professors']);
-                },
-            error:() =>{
-              this.loading = false;
-              this._snackBar.open('Error, no se pudo crear el docente', 'Cerrar', {
-                duration: 3000,
-              });
-            }
-          })
-        },
-        error: () => {
-          this.loading = false;
+    this.authSerivce.registerUser(this.newProfessor.email, this.newProfessor.identificationNumber).subscribe({
+      next: () => {
+        this.professorService.createProfessor(this.newProfessor).subscribe({
+          next: () => {
+            this.userRolService.createUserRole(this.newUserRole).subscribe({
+              next:() =>{
+                this.loading = false;
+                this._snackBar.open('Se ha creado el docente correctamente', 'Cerrar', {
+                  duration: 3000,
+                });
+                this.router.navigate(['/dashboard/professors']);
+                  },
+              error:() =>{
+                this.loading = false;
+                this._snackBar.open('Error, no se pudo crear el docente', 'Cerrar', {
+                  duration: 3000,
+                });
+              }
+            })
+          },
+          error: () => {
+            this.loading = false;
+            this._snackBar.open('Error, no se pudo crear el docente', 'Cerrar', {
+              duration: 3000,
+            });
+           
+          }
+        }
+      );
+      },
+      error:() =>{
+        this.loading = false;
           this._snackBar.open('Error, no se pudo crear el docente', 'Cerrar', {
             duration: 3000,
           });
-         
-        }
       }
-    );
+    })
+    
   }
 }

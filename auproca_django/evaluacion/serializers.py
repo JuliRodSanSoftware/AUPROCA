@@ -45,6 +45,7 @@ class EvaluacionListSerializer(serializers.ModelSerializer):
     identificacionDocente = serializers.IntegerField(source='usr_identificacion.usr_identificacion.usr_identificacion') 
     nombreDocente = serializers.CharField(source='usr_identificacion.usr_identificacion.usu_nombre')
     apellidoDocente = serializers.CharField(source='usr_identificacion.usr_identificacion.usu_apellido')
+    idLabor = serializers.IntegerField(source='lab_id.lab_id') 
     nombreLabor = serializers.CharField(source='lab_id.lab_nombre')
     horas = serializers.IntegerField(source='lab_id.lab_horas')
     fechaInicio = serializers.DateField(source='per_id.per_fechainicio')
@@ -56,7 +57,7 @@ class EvaluacionListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Evaluacion
-        fields = ['id','periodo', 'identificacionDocente', 'nombreDocente', 'apellidoDocente', 'nombreLabor', 'horas', 'fechaInicio', 'fechaFin', 'estado', 'resultados', 'puntaje', 'sugerencias']
+        fields = ['id','periodo', 'idLabor', 'identificacionDocente', 'nombreDocente', 'apellidoDocente', 'nombreLabor', 'horas', 'fechaInicio', 'fechaFin', 'estado', 'resultados', 'puntaje', 'sugerencias']
 
 
 class CustomLoginSerializer(serializers.Serializer):
@@ -76,3 +77,10 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+    
+
+class ChangePasswordSerializer(serializers.Serializer):
+    model = User
+    username = serializers.CharField(required=True)
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)

@@ -19,5 +19,6 @@ urlpatterns = [
     path('register/', UserCreate.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('is_logged_in/', IsLoggedInView.as_view(), name='is_logged_in'),
+    path('change-password/', ChangePasswordView.as_view(), name='change-password'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

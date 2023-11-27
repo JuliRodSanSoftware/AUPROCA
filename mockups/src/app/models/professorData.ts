@@ -5,7 +5,7 @@ export class ProfessorData {
     public usu_apellido?: string,
     public usu_genero?: string,
     public usu_estudio?: string,
-    public login?: any  // Puedes ajustar el tipo según la estructura real del objeto login
+    public email?: any  // Puedes ajustar el tipo según la estructura real del objeto login
   ) {
     // Puedes inicializar propiedades adicionales aquí si es necesario
   }

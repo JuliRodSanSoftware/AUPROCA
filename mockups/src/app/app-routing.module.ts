@@ -16,10 +16,12 @@ import { CreateLaborTypeComponent } from './components/dashboard/labor-type/crea
 import { LaborTypeComponent } from './components/dashboard/labor-type/labor-type.component';
 import { LaborTypeDetailComponent } from './components/dashboard/labor-type/labor-type-detail/labor-type-detail.component';
 import { authGuard } from './guards/auth.guard';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 
 
 const routes: Routes = [
   { path: "sign-in", component: SignInComponent, pathMatch: "full" },
+  { path: "update-password", component: UpdatePasswordComponent, pathMatch: "full" },
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard], children: [
     { path: '', component: HomeComponent }, 
     { path: 'create-professor', component: CreateProfessorComponent },

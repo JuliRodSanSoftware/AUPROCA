@@ -7,10 +7,7 @@ from .models import *
 from .serializers import *
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken  
 from rest_framework.authtoken.models import Token
-
-
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-import six
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -140,3 +137,36 @@ class IsLoggedInView(APIView):
                 return Response({"message": "Invalid token: User information not found"}, status=401)
         except Exception as e:
             return Response({"message": "Invalid token: " + str(e)}, status=401)
+        
+
+class ChangePasswordView(generics.UpdateAPIView):
+    serializer_class = ChangePasswordSerializer
+    model = User
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            # Verifica que el nombre de usuario sea correcto
+            if not self.object.username == serializer.data.get("username"):
+                return Response({"username": ["Nombre de usuario incorrecto."]}, status=status.HTTP_400_BAD_REQUEST)
+            # Verifica la contraseña antigua
+            if not self.object.check_password(serializer.data.get("old_password")):
+                return Response({"old_password": ["Contraseña incorrecta."]}, status=status.HTTP_400_BAD_REQUEST)
+            # set_password también cifra la contraseña que el usuario obtendrá
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            response = {
+                'status': 'success',
+                'code': status.HTTP_200_OK,
+                'message': 'Contraseña actualizada correctamente',
+                'data': []
+            }
+            return Response(response)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -22,7 +22,7 @@ export class ProfessorService {
       professor.lastName,
       professor.gender,
       professor.lastAcademicTitle,
-      null  // Toca mejorar una parte del login para ello
+      professor.email  // Toca mejorar una parte del login para ello
     );
     
     return this.http.post<any>(this.apiUrlProffessors, sendData);
