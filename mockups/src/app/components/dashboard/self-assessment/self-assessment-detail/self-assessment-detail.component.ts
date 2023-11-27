@@ -109,8 +109,8 @@ export class SelfAssessmentDetailComponent {
 
             this.selfAssessmentService.getSelfAssessmentCompleteDetail(idParam).subscribe(evaluation =>{
               this.evaluation = evaluation;
-              this.selectedProfessor = evaluationC.usr_identificacion?.toString();
-              this.selectedLabor = evaluationC.lab_id?.toString();
+              this.selectedProfessor = evaluation.identificacionDocente?.toString();
+              this.selectedLabor = evaluation.idLabor?.toString();
               this.selectedPeriod = evaluationC.per_id?.toString();
               this.cdr.detectChanges();
               if (!this.evaluation.id) {

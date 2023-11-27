@@ -5,6 +5,7 @@ export class Evaluation {
         public nombreDocente?: string,
         public apellidoDocente?: string,
         public identificacionDocente?: string,
+        public idLabor?: number,
         public nombreLabor?: string,
         public tipoLabor?: string,
         public horas?: number,

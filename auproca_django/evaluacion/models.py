@@ -63,14 +63,12 @@ class Periodo(models.Model):
         return self.per_nombre
 
 class UserRol(models.Model):
-    
     usr_identificacion = models.ForeignKey(Usuario, on_delete=models.RESTRICT)
     rol_id = models.ForeignKey(Rol, on_delete=models.RESTRICT, db_column='rol_id', related_name='user_roles', related_query_name='user_role')
     def __str__(self):
         return str(self.id)+ ": "+ str(self.usr_identificacion) +"- " +  str(self.rol_id)
 
 class Evaluacion(models.Model):
-
     ESTADO_CHOICES = (
         ('E', 'En ejecución'),
         ('T', 'Terminado'),
