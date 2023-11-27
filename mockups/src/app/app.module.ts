@@ -43,6 +43,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CustomMatPaginatorIntl } from './utils/CustomMatPaginatorIntl';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 
 
 
@@ -67,6 +68,7 @@ import { CustomMatPaginatorIntl } from './utils/CustomMatPaginatorIntl';
     LaborTypeComponent,
     CreateLaborTypeComponent,
     LaborTypeDetailComponent,
+    UpdatePasswordComponent,
     
   ],
   imports: [

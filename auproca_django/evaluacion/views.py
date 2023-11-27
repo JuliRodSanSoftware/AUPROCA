@@ -1,4 +1,5 @@
 from asyncio import AbstractServer
+from datetime import timedelta
 from rest_framework import viewsets, generics
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -116,9 +117,12 @@ class UserCreate(generics.CreateAPIView):
 class LogoutView(APIView):
     def post(self, request):
         try:
+            token = request.data['token']
             refresh_token = request.data['refresh']
             token = RefreshToken(refresh_token)
             token.blacklist()
+            access_token = AccessToken(token)
+            access_token.set_exp(lifetime=timedelta(seconds=0))
             return Response({"message": "Token revoked"}, status=200)
         except Exception as e:
             return Response({"message error": str(e)}, status=400)
@@ -130,7 +134,6 @@ class IsLoggedInView(APIView):
             token = request.data['token']
             token_obj = AccessToken(token)
             user = token_obj.get('user_id')
-            
             if user:
                 return Response({"message": "User is logged in", "user_id": token_obj.get('user_id'),}, status=200)
             else:
