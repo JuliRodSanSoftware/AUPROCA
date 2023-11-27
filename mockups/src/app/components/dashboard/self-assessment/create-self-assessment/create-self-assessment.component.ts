@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable, startWith, map } from 'rxjs';
-import { Constants } from 'src/app/models/constants';
 import { EvaluationC } from 'src/app/models/evaluationComplete';
 import { Labor } from 'src/app/models/labor';
 import { Period } from 'src/app/models/period';
@@ -39,13 +38,13 @@ export class CreateSelfAssessmentComponent {
 
 
   constructor( private _snackBar: MatSnackBar, 
-    private router: Router,private laborService: LaborService, private periodService: PeriodService,
+    private router: Router, private laborService: LaborService, private periodService: PeriodService,
     private professorService: ProfessorService, private selfAssessmentService: SelfAssessmentService,
     private userRoleService: UserRoleService) {}
 
   ngAfterViewInit(): void {
     this.newEvaluation.eva_estado ="E";
-    this.newEvaluation.eva_puntaje = 0;
+    this.newEvaluation.eva_puntaje = "0";
     this.periodService.getPeriods().subscribe(periods =>{
       this.periods = periods;
     }
@@ -103,11 +102,12 @@ export class CreateSelfAssessmentComponent {
 
     this.userRoleService.getUserRoles().subscribe({
       next:(userRoles)=>{
-        userRoles.map((role) =>{
-          if (role.usr_identificacion == this.newEvaluation.usr_identificacion){
-            this.newEvaluation.rol_id =role.rol_id;
-          }
-          console.log(this.newEvaluation);
+        userRoles.map((userRole) =>{
+          if (userRole.usr_identificacion == this.newEvaluation.usr_identificacion){
+            this.newEvaluation.usr_identificacion = userRole.id
+            this.newEvaluation.rol_id = userRole.id
+          }});
+          
           this.selfAssessmentService.createSelfAssessment(this.newEvaluation).subscribe({
             next: () => {
               this.loading = false;
@@ -125,8 +125,6 @@ export class CreateSelfAssessmentComponent {
             }
           }
         );
-            
-        });
         
 
 

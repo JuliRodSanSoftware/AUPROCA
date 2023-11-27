@@ -1,6 +1,6 @@
-<div class="professor-management">
+<div class="professor-management mat-elevation-z8">
     <h2>Gestión de Docentes</h2>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
         <ng-container *ngFor="let column of displayedColumns; let i = index" [matColumnDef]="column">
             <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
             <td mat-cell *matCellDef="let professor">
@@ -18,8 +18,8 @@
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row matRipple *matRowDef="let row; columns: displayedColumns" (click)="viewProfessorDetails(row)"></tr>
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </table>
+    <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
 
     <div class="button-container">
         <button mat-raised-button color="primary" class="create-button" (click)="createProfessor()">Crear Docente</button>

@@ -19,7 +19,7 @@
             <mat-divider></mat-divider>
             <a mat-list-item  routerLink="/dashboard/self-assessment">Gestionar Autoevaluaciones</a>
             <mat-divider></mat-divider>
-            <a mat-list-item  routerLink="/sign-in">Cerrar sesión</a>
+            <a mat-list-item (click)="logout()">Cerrar sesión</a>
             <mat-divider></mat-divider>
         </mat-nav-list>
         </mat-sidenav>

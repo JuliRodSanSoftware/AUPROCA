@@ -15,11 +15,12 @@ import { CreateSelfAssessmentComponent } from './components/dashboard/self-asses
 import { CreateLaborTypeComponent } from './components/dashboard/labor-type/create-labor-type/create-labor-type.component';
 import { LaborTypeComponent } from './components/dashboard/labor-type/labor-type.component';
 import { LaborTypeDetailComponent } from './components/dashboard/labor-type/labor-type-detail/labor-type-detail.component';
+import { authGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
   { path: "sign-in", component: SignInComponent, pathMatch: "full" },
-  { path: 'dashboard', component: DashboardComponent, children: [
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard], children: [
     { path: '', component: HomeComponent }, 
     { path: 'create-professor', component: CreateProfessorComponent },
     { path: 'professors', component: ProfessorComponent }, 

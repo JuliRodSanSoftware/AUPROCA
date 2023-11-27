@@ -67,7 +67,7 @@ class UserRol(models.Model):
     usr_identificacion = models.ForeignKey(Usuario, on_delete=models.RESTRICT)
     rol_id = models.ForeignKey(Rol, on_delete=models.RESTRICT, db_column='rol_id', related_name='user_roles', related_query_name='user_role')
     def __str__(self):
-        return self.usr_identificacion
+        return str(self.id)+ ": "+ str(self.usr_identificacion) +"- " +  str(self.rol_id)
 
 class Evaluacion(models.Model):
 
@@ -87,4 +87,4 @@ class Evaluacion(models.Model):
     eva_resultado = models.CharField(max_length=1000, null=True, blank=True)
     eva_sugerencias = models.CharField(max_length=1000, null=True, blank=True)
     def __str__(self):
-        return self.usr_identificacion
+        return str(self.usr_identificacion.usr_identificacion)

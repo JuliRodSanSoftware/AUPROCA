@@ -1,8 +1,20 @@
-from rest_framework import viewsets
+from asyncio import AbstractServer
+from rest_framework import viewsets, generics
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import *
 from .serializers import *
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken  
+from rest_framework.authtoken.models import Token
+
+
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+import six
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth import authenticate, login
+from .serializers import CustomLoginSerializer
 
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
@@ -69,3 +81,59 @@ class RolViewSet(viewsets.ReadOnlyModelViewSet):
 class PeriodoViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Periodo.objects.all()
     serializer_class = PeriodoSerializer
+
+
+class EvaluacionListViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Evaluacion.objects.all()
+    serializer_class = EvaluacionListSerializer
+
+
+class LoginView(APIView):
+    def post(self, request):
+        serializer = CustomLoginSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            password = serializer.validated_data['password']
+            user = authenticate(request, username=email, password=password)
+            if user:
+                login(request, user)
+                refresh = RefreshToken.for_user(user)
+                auth_token = str(refresh.access_token)
+                refresh_token = str(refresh)
+                return Response({"message": "Login successful", "token": auth_token, "refresh": refresh_token}, status=status.HTTP_200_OK)
+            else:
+                return Response({"message": "Authentication failed"}, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response({"message": "Authentication failed 2"}, status=status.HTTP_401_UNAUTHORIZED)
+        
+
+
+class UserCreate(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class LogoutView(APIView):
+    def post(self, request):
+        try:
+            refresh_token = request.data['refresh']
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({"message": "Token revoked"}, status=200)
+        except Exception as e:
+            return Response({"message error": str(e)}, status=400)
+        
+
+class IsLoggedInView(APIView):
+    def post(self, request):
+        try:
+            token = request.data['token']
+            token_obj = AccessToken(token)
+            user = token_obj.get('user_id')
+            
+            if user:
+                return Response({"message": "User is logged in", "user_id": token_obj.get('user_id'),}, status=200)
+            else:
+                return Response({"message": "Invalid token: User information not found"}, status=401)
+        except Exception as e:
+            return Response({"message": "Invalid token: " + str(e)}, status=401)
